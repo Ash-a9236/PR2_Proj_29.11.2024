@@ -5,8 +5,22 @@ import java.util.ArrayList;
 public class StudentManager {
     private ArrayList<Student> students;
 
-    private void addStudent (Student student) {
+    public void addStudent (Student student) {
 
+    }
+
+    public void removeStudent (int id) {
+
+    }
+
+    public void searchStudentByID (Student student) {
+
+    }
+
+    public ArrayList<Student> sortStudentByID (ArrayList<Student> students) {
+        ArrayList<Student> sortedStudents = null;
+
+        return sortedStudents;
     }
 
 }
