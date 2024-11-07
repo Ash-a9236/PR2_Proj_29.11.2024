@@ -20,10 +20,6 @@ DELIVERABLE 2 INFORMATIONS
 - Implement methods to add, delete, search, and display students.
 - Add support for saving students to a text file and loading students from a text file.
 - Test the file operations thoroughly.
-
-
-
-
  */
 
 public class Main {
