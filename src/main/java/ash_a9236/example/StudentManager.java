@@ -31,6 +31,12 @@ public class StudentManager {
         students.remove(searchStudentByID(id));
     }
 
+    public void displayStudents () {
+        for (Student student : students) {
+            System.out.println(student);
+        }
+    }
+
 
 
     public Student searchStudentByID (int id) throws StudentNotFoundException {
