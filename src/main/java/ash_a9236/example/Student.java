@@ -34,7 +34,9 @@ public class Student extends Person {
 
     @Override
     void getDescription() {
-
+        System.out.println("STUDENT " + getId());
+        System.out.println("   Semester : " + getSemester());
+        System.out.println("   GPA :      " + getGPA());
     }
 
 
