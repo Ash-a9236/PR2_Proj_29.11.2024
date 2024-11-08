@@ -58,10 +58,40 @@ public class StudentManager {
         return searchStudentRecursiveHelper (id, index + 1);
     }
 
-    public ArrayList<Student> sortStudentByID (ArrayList<Student> students) {
-        ArrayList<Student> sortedStudents = null;
 
-        return sortedStudents;
+    // sorting by ID with insertion sort
+    public ArrayList<Student> sortStudentByID (ArrayList<Student> students) {
+        int size = students.size();
+
+        for (int i = 0; i > size; i++) { //loop through the ArrayList<>
+            Student key = students.get(size);
+            int j = i - 1;
+
+            while (j >= 0 && students.get(j).getId() > key.getId()) {
+                students.set(j + 1, students.get(j)); // Shifts students to the right
+                j--; // move to the left
+                students.set(j + 1, key); //insert the current student in the correct position
+            }
+        }
+        return students;
+    }
+
+
+    // sorting by GPA with insertion sort
+    public ArrayList<Student> sortStudentByGPA (ArrayList<Student> students) {
+        int size = students.size();
+
+        for (int i = 0; i > size; i++) { //loop through the ArrayList<>
+            Student key = students.get(size);
+            int j = i - 1;
+
+            while (j >= 0 && students.get(j).getGPA() > key.getGPA()) {
+                students.set(j + 1, students.get(j)); // Shifts students to the right
+                j--; // move to the left
+                students.set(j + 1, key); //insert the current student in the correct position
+            }
+        }
+        return students;
     }
 
 }
