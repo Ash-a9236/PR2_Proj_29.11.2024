@@ -1,6 +1,6 @@
 package ash_a9236.example;
 
-import java.util.Scanner;
+import java.util.Objects;
 
 public class Student extends Person {
     private int semester;
@@ -44,7 +44,8 @@ ________________________________________________________________________________
         System.out.println("   GPA :      " + getGPA());
     }
 
-    public Student(int semester, int id, double GPA) {
+    public Student(String name, int age, int semester, int id, double GPA) {
+        super(name, age);
         this.semester = semester;
         this.id = id;
         this.GPA = GPA;
@@ -57,6 +58,25 @@ ________________________________________________________________________________
 
 
 /*______________________________________________________________________________________________________________________
+
+ EQUALS & HASHCODE
+______________________________________________________________________________________________________________________*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return semester == student.semester && id == student.id && Double.compare(GPA, student.GPA) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(semester, id, GPA);
+    }
+
+
+    /*______________________________________________________________________________________________________________________
 
  GETTERS & SETTERS
 ______________________________________________________________________________________________________________________*/
