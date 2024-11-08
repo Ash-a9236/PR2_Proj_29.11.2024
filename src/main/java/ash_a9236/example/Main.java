@@ -47,10 +47,11 @@ public class Main {
 
         System.out.println("_________________________________________________________________");
         System.out.println("         Welcome to the Library Management System!\n");
-        System.out.println("    1. Add Student                      4. Delete Student");
-        System.out.println("    2. Find Student                     5. Save to File");
-        System.out.println("    3. Display Students                 6. Load from File");
-        System.out.println("                       7. Exit");
+        System.out.println("    1. Add Student                      5. Save to File");
+        System.out.println("    2. Find Student                     6. Load from File");
+        System.out.println("    3. Display Students                 7. Sort Students By ID");
+        System.out.println("    4. Delete Student                   8. Sort Students By GPA");
+        System.out.println("                       9. Exit");
         System.out.println("_________________________________________________________________\n");
 
         userAns = console.next();
@@ -137,6 +138,18 @@ public class Main {
                 break;
 
             case "7":
+                System.out.println("SORT STUDENTS BY ID");
+
+                sm.sortStudentByID();
+                break;
+
+            case "8":
+                System.out.println("SORT STUDENTS BY GPA");
+
+                sm.sortStudentByGPA();
+                break;
+
+            case "9":
                 System.out.println("Exiting program. Thank you!");
                 break;
 

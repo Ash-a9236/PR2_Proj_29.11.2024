@@ -105,7 +105,7 @@ ________________________________________________________________________________
 
 
     // sorting by ID with insertion sort
-    public ArrayList<Student> sortStudentByID (ArrayList<Student> students) {
+    public ArrayList<Student> sortStudentByID () {
         int size = students.size();
 
         for (int i = 0; i > size; i++) { //loop through the ArrayList<>
@@ -123,7 +123,7 @@ ________________________________________________________________________________
 
 
     // sorting by GPA with insertion sort
-    public ArrayList<Student> sortStudentByGPA (ArrayList<Student> students) {
+    public ArrayList<Student> sortStudentByGPA () {
         int size = students.size();
 
         for (int i = 0; i > size; i++) { //loop through the ArrayList<>
