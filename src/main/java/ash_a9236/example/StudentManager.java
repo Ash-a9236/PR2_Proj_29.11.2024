@@ -1,15 +1,40 @@
 package ash_a9236.example;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudentManager implements FileHandler{
     private ArrayList<Student> students;
 
+/*______________________________________________________________________________________________________________________
 
+ INHERITED METHOD.S
+______________________________________________________________________________________________________________________*/
 
     @Override
     public void saveToFile(String fileName, ArrayList<Student> students) {
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("StudentList.csv"));
+
+            //Header
+            writer.write("NAME, AGE, ID, SEMESTER, GPA");
+            writer.newLine();
+
+            for (Student student : students) {
+                writer.write(student.convertToCSVFormat());
+                writer.newLine();
+            }
+
+            System.out.println("Data Written To File");
+
+        } catch (IOException e) {
+            System.out.println("Cannot perform task");
+            e.printStackTrace();
+        }
 
     }
 
@@ -17,6 +42,12 @@ public class StudentManager implements FileHandler{
     public void loadFromFile(String fileName) {
 
     }
+
+/*______________________________________________________________________________________________________________________
+
+ CLASS METHOD.S
+______________________________________________________________________________________________________________________*/
+
 
     public void addStudent (Student student) throws StudentNotFoundException {
         Scanner console = new Scanner(System.in);
@@ -54,8 +85,6 @@ public class StudentManager implements FileHandler{
             System.out.println(student);
         }
     }
-
-
 
     public Student searchStudentByID (int id) throws StudentNotFoundException {
         return searchStudentRecursiveHelper(id, 0);
