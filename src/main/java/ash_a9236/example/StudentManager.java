@@ -3,8 +3,20 @@ package ash_a9236.example;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class StudentManager {
+public class StudentManager implements FileHandler{
     private ArrayList<Student> students;
+
+
+
+    @Override
+    public void saveToFile(String fileName, ArrayList<Student> students) {
+
+    }
+
+    @Override
+    public void loadFromFile(String fileName) {
+
+    }
 
     public void addStudent (Student student) throws StudentNotFoundException {
         Scanner console = new Scanner(System.in);
@@ -15,6 +27,12 @@ public class StudentManager {
         String IDExtraLine = console.nextLine();
 
         if (searchStudentByID(ID) != null) {
+            System.out.println("Enter Student Name : ");
+            String name = console.nextLine();
+
+            System.out.println("Enter Student Age");
+            int age = console.nextInt();
+
             System.out.println("Enter Student Semester : ");
             int semester = console.nextInt();
             String SemesterExtraLine = console.nextLine();
@@ -23,7 +41,7 @@ public class StudentManager {
             double GPA = console.nextDouble();
             String GPAExtraLine = console.nextLine();
 
-            students.add(new Student(semester, ID, GPA));
+            students.add(new Student(name, age, semester, ID, GPA));
         }
     }
 
@@ -93,5 +111,6 @@ public class StudentManager {
         }
         return students;
     }
+
 
 }
