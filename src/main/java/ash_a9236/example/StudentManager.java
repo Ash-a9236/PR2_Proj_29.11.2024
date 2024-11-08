@@ -1,8 +1,6 @@
 package ash_a9236.example;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,11 +12,16 @@ public class StudentManager implements FileHandler{
  INHERITED METHOD.S
 ______________________________________________________________________________________________________________________*/
 
+    public void saveToFileMain(String fileName) {
+        saveToFile(fileName, students);
+    }
+
     @Override
     public void saveToFile(String fileName, ArrayList<Student> students) {
 
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("StudentList.csv"));
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".csv"));
 
             //Header
             writer.write("NAME, AGE, ID, SEMESTER, GPA");
@@ -35,12 +38,30 @@ ________________________________________________________________________________
             System.out.println("Cannot perform task");
             e.printStackTrace();
         }
-
     }
 
     @Override
     public void loadFromFile(String fileName) {
 
+        try {
+
+            BufferedReader reader = new BufferedReader(new FileReader(fileName + ".csv"));
+            String line = "";
+            String[] strs = line.split(" ");
+
+            for (String str : strs) {
+                System.out.println(str);
+            }
+
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            reader.close();
+
+        } catch (IOException e) {
+            System.out.println("file not found");
+            e.printStackTrace();
+        }
     }
 
 /*______________________________________________________________________________________________________________________
@@ -48,32 +69,9 @@ ________________________________________________________________________________
  CLASS METHOD.S
 ______________________________________________________________________________________________________________________*/
 
-
     public void addStudent (Student student) throws StudentNotFoundException {
-        Scanner console = new Scanner(System.in);
-
-        System.out.println("ADDING STUDENT");
-        System.out.print("Enter Student ID : ");
-        int ID = console.nextInt();
-        String IDExtraLine = console.nextLine();
-
-        if (searchStudentByID(ID) != null) {
-            System.out.println("Enter Student Name : ");
-            String name = console.nextLine();
-
-            System.out.println("Enter Student Age");
-            int age = console.nextInt();
-
-            System.out.println("Enter Student Semester : ");
-            int semester = console.nextInt();
-            String SemesterExtraLine = console.nextLine();
-
-            System.out.println("Enter Student GPA : ");
-            double GPA = console.nextDouble();
-            String GPAExtraLine = console.nextLine();
-
-            students.add(new Student(name, age, semester, ID, GPA));
-        }
+        //ADDING STUDENTS
+        students.add(student);
     }
 
     public void removeStudent (int id) throws StudentNotFoundException {
