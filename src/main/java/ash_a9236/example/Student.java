@@ -1,5 +1,6 @@
 package ash_a9236.example;
 
+import javax.xml.namespace.QName;
 import java.util.Objects;
 
 public class Student extends Person {
@@ -14,23 +15,6 @@ public class Student extends Person {
     - Add support for saving students to a text file and loading students from a text file.
     - Test the file operations thoroughly.
  */
-
-    //
-//    public void addStudent() {
-//        Scanner console = new Scanner(System.in);
-//        System.out.println("Please input the student roll number");
-//        int rollNumber = console.nextInt();
-//        String extraLine = console.nextLine();
-//
-//        if (findStudent(rollNumber) == null) {
-//            System.out.println("Input the student's full name : ");
-//            String name = console.nextLine();
-//            students.add(new Student(name, rollNumber));
-//            System.out.println("Student added successfully.");
-//        } else {
-//            System.out.println("Student No " + rollNumber + " already exists in the system");
-//        }
-//    }
 
 /*______________________________________________________________________________________________________________________
 
@@ -56,6 +40,9 @@ ________________________________________________________________________________
  CLASS METHOD.S
 ______________________________________________________________________________________________________________________*/
 
+    public String convertToCSVFormat () {
+        return getName() + "," + getAge() + "," + id + "," + semester + "," + GPA;
+    }
 
 /*______________________________________________________________________________________________________________________
 
@@ -76,7 +63,7 @@ ________________________________________________________________________________
     }
 
 
-    /*______________________________________________________________________________________________________________________
+/*______________________________________________________________________________________________________________________
 
  GETTERS & SETTERS
 ______________________________________________________________________________________________________________________*/
