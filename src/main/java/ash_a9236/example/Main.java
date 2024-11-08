@@ -14,11 +14,14 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
     .
 ______________________________________________________________________________________________________________________*/
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws StudentNotFoundException {
-        StudentManager sm = new StudentManager();
+        ArrayList<Student> students = new ArrayList<>();
+        StudentManager sm = new StudentManager(students);
+
         Scanner console = new Scanner(System.in);
         String userAns;
 

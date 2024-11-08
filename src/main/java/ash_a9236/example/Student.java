@@ -22,10 +22,8 @@ public class Student extends Person {
 ______________________________________________________________________________________________________________________*/
 
     @Override
-    void getDescription() {
-        System.out.println("STUDENT " + getId());
-        System.out.println("   Semester : " + getSemester());
-        System.out.println("   GPA :      " + getGPA());
+    String getDescription() {
+        return "STUDENT " + getId() + "\n   Semester : " + getSemester() + "\n   GPA :      " + getGPA();
     }
 
     public Student(String name, int age, int semester, int id, double GPA) {

@@ -9,7 +9,7 @@ public abstract class Person {
         this.age = age;
     }
 
-    abstract void getDescription();
+    abstract String getDescription();
 
 
 /*______________________________________________________________________________________________________________________

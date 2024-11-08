@@ -7,6 +7,10 @@ import java.util.Scanner;
 public class StudentManager implements FileHandler{
     private ArrayList<Student> students;
 
+    public StudentManager(ArrayList<Student> students) {
+        this.students = students;
+    }
+
 /*______________________________________________________________________________________________________________________
 
  INHERITED METHOD.S
@@ -80,7 +84,7 @@ ________________________________________________________________________________
 
     public void displayStudents () {
         for (Student student : students) {
-            System.out.println(student);
+            System.out.println(student.getDescription());
         }
     }
 
