@@ -23,7 +23,10 @@ ________________________________________________________________________________
 
     @Override
     String getDescription() {
-        return "STUDENT " + getId() + "\n   Semester : " + getSemester() + "\n   GPA :      " + getGPA();
+        return "STUDENT " + getId()
+                + "\n   Name : " + getName()
+                + "\n   Semester : " + getSemester()
+                + "\n   GPA :      " + getGPA();
     }
 
     public Student(String name, int age, int semester, int id, double GPA) {

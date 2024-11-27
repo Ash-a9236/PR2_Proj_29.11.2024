@@ -2,6 +2,7 @@ package ash_a9236.example;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class StudentManager implements FileHandler{
@@ -17,24 +18,30 @@ public class StudentManager implements FileHandler{
 ______________________________________________________________________________________________________________________*/
 
     public void saveToFileMain(String fileName) {
-        saveToFile(fileName, students);
+        saveToFile(fileName, students, true);
     }
 
     @Override
-    public void saveToFile(String fileName, ArrayList<Student> students) {
+    public void saveToFile(String fileName, ArrayList<Student> students, boolean append) {
 
         try {
-
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".csv"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter( fileName + ".csv", append));
 
             //Header
-            writer.write("NAME, AGE, ID, SEMESTER, GPA");
+            writer.write("ID, NAME, AGE, SEMESTER, GPA");
             writer.newLine();
 
             for (Student student : students) {
-                writer.write(student.convertToCSVFormat());
+                String toCVS = student.getId() + ", "
+                        + student.getName() + ", "
+                        + student.getAge() + ", "
+                        + student.getSemester() + ", "
+                        + student.getGPA();
+                writer.write(toCVS);
                 writer.newLine();
             }
+
+            writer.close();
 
             System.out.println("Data Written To File");
 
@@ -48,10 +55,9 @@ ________________________________________________________________________________
     public void loadFromFile(String fileName) {
 
         try {
-
             BufferedReader reader = new BufferedReader(new FileReader(fileName + ".csv"));
             String line = "";
-            String[] strs = line.split(" ");
+            String[] strs = line.split(",");
 
             for (String str : strs) {
                 System.out.println(str);
@@ -93,53 +99,42 @@ ________________________________________________________________________________
     }
 
     private Student searchStudentRecursiveHelper (int id, int index) throws StudentNotFoundException {
-        //base case
-        if (index >= students.size()) {
-            throw new StudentNotFoundException("Student not found!");
-        }
-
-        //body
         if (students.get(index).getId() == id) {
+            System.out.println(students.get(index).getDescription());
             return students.get(index);
         }
 
-        //recursion
-        return searchStudentRecursiveHelper (id, index + 1);
+        if (index >= students.size()) {
+            throw new StudentNotFoundException("Student not found in system");
+        }
+
+        if (students.get(index).getId() != id) {
+            return searchStudentRecursiveHelper(id, index + 1);
+        }
+
+        return null;
+    }
+
+    public Student checkIfStudentExists (int id) {
+        int idx = 0;
+        for (Student student : students) {
+            if (student.getId() == id) {
+                System.out.println("Student " + id + " exists in the system");
+                return student;
+            }
+        }
+        return null;
     }
 
 
-    // sorting by ID with insertion sort
     public ArrayList<Student> sortStudentByID () {
-        int size = students.size();
-
-        for (int i = 0; i > size; i++) { //loop through the ArrayList<>
-            Student key = students.get(size);
-            int j = i - 1;
-
-            while (j >= 0 && students.get(j).getId() > key.getId()) {
-                students.set(j + 1, students.get(j)); // Shifts students to the right
-                j--; // move to the left
-                students.set(j + 1, key); //insert the current student in the correct position
-            }
-        }
+        students.sort(Comparator.comparing(Student::getId));
         return students;
     }
 
 
-    // sorting by GPA with insertion sort
     public ArrayList<Student> sortStudentByGPA () {
-        int size = students.size();
-
-        for (int i = 0; i > size; i++) { //loop through the ArrayList<>
-            Student key = students.get(size);
-            int j = i - 1;
-
-            while (j >= 0 && students.get(j).getGPA() > key.getGPA()) {
-                students.set(j + 1, students.get(j)); // Shifts students to the right
-                j--; // move to the left
-                students.set(j + 1, key); //insert the current student in the correct position
-            }
-        }
+        students.sort(Comparator.comparing(Student::getGPA));
         return students;
     }
 

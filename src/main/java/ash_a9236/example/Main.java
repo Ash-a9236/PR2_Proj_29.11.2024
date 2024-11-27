@@ -67,7 +67,7 @@ public class Main {
                 int ID = console.nextInt();
                 String IDExtraLine = console.nextLine();
 
-                if (sm.searchStudentByID(ID) != null) {
+                if (sm.checkIfStudentExists(ID) == null) {
                     //NAME
                     System.out.println("Enter Student Name : ");
                     String name = console.nextLine();
@@ -117,14 +117,16 @@ public class Main {
                 String IDExtraLine02 = console.nextLine();
 
                 sm.removeStudent(ID02);
+                //sm.displayStudents();
                 break;
 
             case "5":
                 System.out.println("SAVING TO FILE");
                 System.out.print("Enter File Name : ");
 
+                String junkline03 = console.nextLine();
                 String fileName = console.nextLine();
-                fileName.substring(0, fileName.indexOf("."));
+                //fileName.substring(0, fileName.indexOf("."));
 
                 sm.saveToFileMain(fileName);
                 break;
@@ -132,9 +134,9 @@ public class Main {
             case "6":
                 System.out.println("LOAD FROM FILE");
                 System.out.print("Enter File Name : ");
-
+                String junkline04 = console.nextLine();
                 String fileName01 = console.nextLine();
-                fileName01.substring(0, fileName01.indexOf("."));
+                //fileName01.substring(0, fileName01.indexOf("."));
 
                 sm.loadFromFile(fileName01);
 
@@ -144,12 +146,16 @@ public class Main {
                 System.out.println("SORT STUDENTS BY ID");
 
                 sm.sortStudentByID();
+                System.out.println("\n\n");
+                sm.displayStudents();
                 break;
 
             case "8":
                 System.out.println("SORT STUDENTS BY GPA");
 
                 sm.sortStudentByGPA();
+                System.out.println("\n\n");
+                sm.displayStudents();
                 break;
 
             case "9":
